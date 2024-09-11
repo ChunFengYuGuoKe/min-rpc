@@ -1,8 +1,11 @@
 package com.jpt.minrpc;
 
 
+import com.jpt.minrpc.config.RegistryConfig;
 import com.jpt.minrpc.config.RpcConfig;
 import com.jpt.minrpc.constant.RpcConstant;
+import com.jpt.minrpc.registry.Registry;
+import com.jpt.minrpc.registry.RegistryFactory;
 import com.jpt.minrpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +26,11 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, config = {}", newRpcConfig.toString());
+        // 注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
     }
 
     /**

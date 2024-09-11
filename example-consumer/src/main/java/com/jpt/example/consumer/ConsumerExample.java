@@ -25,6 +25,5 @@ public class ConsumerExample {
         } else {
             System.out.println("user == null");
         }
-
     }
 }

@@ -1,0 +1,4 @@
+jdk=com.jpt.minrpc.serializer.JDKSerializer
+json=com.jpt.minrpc.serializer.JsonSerializer
+kryo=com.jpt.minrpc.serializer.KryoSerializer
+hessian=com.jpt.minrpc.serializer.HessianSerializer

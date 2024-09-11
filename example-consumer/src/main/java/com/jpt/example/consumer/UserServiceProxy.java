@@ -4,10 +4,12 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.jpt.example.common.model.User;
 import com.jpt.example.common.service.UserService;
+import com.jpt.minrpc.RpcApplication;
 import com.jpt.minrpc.model.RpcRequest;
 import com.jpt.minrpc.model.RpcResponse;
 import com.jpt.minrpc.serializer.JDKSerializer;
 import com.jpt.minrpc.serializer.Serializer;
+import com.jpt.minrpc.serializer.SerializerFactory;
 
 import java.io.IOException;
 
@@ -19,7 +21,7 @@ public class UserServiceProxy implements UserService {
 
     public User getUser(User user) {
         // 指定序列化器
-        Serializer serializer = new JDKSerializer();
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         // 发请求
         RpcRequest rpcRequest = RpcRequest.builder()
